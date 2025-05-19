@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="tr"><head><meta charset="UTF-8"><title>Kayıt Ol - EdgeFamily 2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css"></head>
+<body><div class="container">
+<h2>Kayıt Formu</h2>
+<form action="secenekler.html" method="GET">
+  <input type="text" name="ad" placeholder="Adınız" required>
+  <input type="text" name="soyad" placeholder="Soyadınız" required>
+  <input type="email" name="email" placeholder="E-Posta" required>
+  <input type="text" name="tc" placeholder="T.C. Kimlik No" id="tc">
+  <label><input type="checkbox" onclick="document.getElementById('tc').disabled=this.checked;"> T.C. vatandaşı değilim</label>
+  <button type="submit" class="btn">Devam Et</button>
+</form>
+</div></body></html>
