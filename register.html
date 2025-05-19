@@ -7,16 +7,33 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h2>Kayıt Formu</h2>
-    <form>
-      <input type="text" placeholder="Ad" required><br>
-      <input type="text" placeholder="Soyad" required><br>
-      <input type="email" placeholder="E-posta" required><br>
-      <input type="text" placeholder="T.C. Kimlik No" required><br>
-      <label><input type="checkbox"> T.C. vatandaşı değilim</label><br>
-      <button class="btn">Kayıt Ol</button>
-    </form>
-  </div>
+<div class="container">
+  <h2>Kayıt Formu</h2>
+  <form onsubmit="saveRegister(event)">
+    <input type="text" id="ad" placeholder="Ad" required><br>
+    <input type="text" id="soyad" placeholder="Soyad" required><br>
+    <input type="email" id="eposta" placeholder="E-posta" required><br>
+    <input type="text" id="tc" placeholder="T.C. Kimlik No" required><br>
+    <label><input type="checkbox" id="foreign" onchange="toggleTC()"> T.C. vatandaşı değilim</label><br>
+    <button class="btn" type="submit">Kayıt Ol</button>
+  </form>
+</div>
+<script>
+function toggleTC() {
+  const tc = document.getElementById('tc');
+  tc.required = !document.getElementById('foreign').checked;
+}
+function saveRegister(e) {
+  e.preventDefault();
+  const kayitlar = JSON.parse(localStorage.getItem("kayitlar") || "[]");
+  kayitlar.push({
+    ad: ad.value, soyad: soyad.value, eposta: eposta.value,
+    tc: foreign.checked ? "Yabancı" : tc.value
+  });
+  localStorage.setItem("kayitlar", JSON.stringify(kayitlar));
+  alert("Kayıt başarıyla tamamlandı!");
+  location.href = "index.html";
+}
+</script>
 </body>
 </html>

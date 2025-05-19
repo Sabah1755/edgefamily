@@ -1,1 +1,30 @@
-<html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><link rel='stylesheet' href='style.css'><title>VIP Talep</title></head><body><div class='container'><h2>VIP Bağış Talebi</h2><p>VIP formu admin paneline düşer.</p></div></body></html>
+<!DOCTYPE html>
+<html lang="tr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIP Talep</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <h2>VIP Bağış Talep Formu</h2>
+  <form onsubmit="saveVIP(event)">
+    <input type="text" id="vip_ad" placeholder="Adınız" required><br>
+    <input type="email" id="vip_email" placeholder="E-posta" required><br>
+    <input type="text" id="vip_miktar" placeholder="Bağış Miktarı" required><br>
+    <textarea id="vip_mesaj" placeholder="Mesajınız" required></textarea><br>
+    <button class="btn" type="submit">Gönder</button>
+  </form>
+</div>
+<script>
+function saveVIP(e){
+  e.preventDefault();
+  const vipler = JSON.parse(localStorage.getItem("vipler") || "[]");
+  vipler.push({
+    ad: vip_ad.value, email: vip_email.value, miktar: vip_miktar.value, mesaj: vip_mesaj.value
+  });
+  localStorage.setItem("vipler", JSON.stringify(vipler));
+  alert("VIP başvuru gönderildi!");
+  location.href = "index.html";
+}
+</script>
+</body>
+</html>

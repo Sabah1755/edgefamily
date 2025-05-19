@@ -1,1 +1,24 @@
-<html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><link rel='stylesheet' href='style.css'><title>Admin Giriş</title></head><body><div class='container'><h2>Admin Paneli</h2><p>Kullanıcı Adı: <b>Sabahapo55</b><br>Şifre: <b>ApoMelis171123</b></p></div></body></html>
+<!DOCTYPE html>
+<html lang="tr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <h2>Admin Panel</h2>
+  <p><b>Kullanıcı:</b> Sabahapo55<br><b>Şifre:</b> ApoMelis171123</p>
+  <h3>Kayıtlı Kullanıcılar</h3>
+  <ul id="kList"></ul>
+  <h3>VIP Başvurular</h3>
+  <ul id="vList"></ul>
+</div>
+<script>
+const kayitlar = JSON.parse(localStorage.getItem("kayitlar") || "[]");
+const vipler = JSON.parse(localStorage.getItem("vipler") || "[]");
+document.getElementById("kList").innerHTML = kayitlar.map(k => 
+  `<li>${k.ad} ${k.soyad} - ${k.eposta} (${k.tc})</li>`).join("");
+document.getElementById("vList").innerHTML = vipler.map(v => 
+  `<li>${v.ad} | ${v.email} | ${v.miktar} TL<br>“${v.mesaj}”</li>`).join("");
+</script>
+</body>
+</html>
